@@ -79,10 +79,17 @@ class CollectionProxy(six.Iterator):
             raise StopIteration
 
         response = self.client.get(url, params)
+
         if response is None:
             raise HttpError('Http Error - No response entity returned')
 
-        collection = response[self.collection]
+        # HACK: dealing with the fact that in unstable /tags is returning
+        # {'type': 'list', 'data': []} instead of
+        # {'type': 'tags.list', 'tags': []}
+        if response['type'] == 'list':
+            collection = response['data']
+        else:
+            collection = response[self.collection]
         # if there are no resources in the response stop iterating
         if collection is None:
             raise StopIteration

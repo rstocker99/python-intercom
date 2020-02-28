@@ -8,10 +8,12 @@ from intercom.collection_proxy import CollectionProxy
 class All(object):
     """A mixin that provides `all` functionality."""
 
+    proxy_class = CollectionProxy
+
     def all(self):
         """Return a CollectionProxy for the resource."""
         collection = utils.resource_class_to_collection_name(
             self.collection_class)
         finder_url = "/%s" % (collection)
-        return CollectionProxy(
+        return self.proxy_class(
             self.client, self.collection_class, collection, finder_url)

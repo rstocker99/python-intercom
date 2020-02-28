@@ -71,6 +71,11 @@ class Client(object):
         return user.User(self)
 
     @property
+    def contacts(self):
+        from intercom.service import contact
+        return contact.Contact(self)
+
+    @property
     def leads(self):
         from intercom.service import lead
         return lead.Lead(self)
