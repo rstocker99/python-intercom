@@ -18,7 +18,6 @@ class CursorCollectionProxy(CollectionProxy):
         if url is None:
             raise StopIteration
 
-        import pdb; pdb.set_trace()
         if "sort" in params or "query" in params:
             url = f"{url}/search"
             if self.paging_info and "next" in self.paging_info:

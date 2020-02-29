@@ -76,14 +76,26 @@ class ScrollCollectionProxy(six.Iterator):
             raise HttpError('Http Error - No response entity returned')
 
         # create the resource iterator
-        collection = response[self.resource_name]
+
+        # HACK: dealing with the fact that in unstable /tags is returning
+        # {'type': 'list', 'data': []} instead of
+        # {'type': 'tags.list', 'tags': []}
+        if response['type'] == 'list':
+            collection = response['data']
+        else:
+            collection = response[self.resource_name]
+
         self.resources = iter(collection)
         # grab the next page URL if one exists
         self.scroll_param = self.extract_scroll_param(response)
 
     def records_present(self, response):
         """Return whether there are resources in the response."""
-        return len(response.get(self.resource_name)) > 0
+        if response['type'] == 'list':
+            collection = response['data']
+        else:
+            collection = response[self.resource_name]
+        return len(collection) > 0
 
     def extract_scroll_param(self, response):
         """Extract the scroll_param from the response."""
