@@ -22,7 +22,9 @@ def custom_attribute_field(attribute):
 
 
 def typed_value(value):
-    return hasattr(value, 'keys') and 'type' in value
+    has_type = hasattr(value, 'keys') and 'type' in value
+    is_type_none = value.get('type') is None
+    return has_type and not is_type_none
 
 
 def datetime_value(value):
