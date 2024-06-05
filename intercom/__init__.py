@@ -7,7 +7,7 @@ from .errors import (ArgumentError, AuthenticationError, # noqa
     ServerError, ServiceUnavailableError, UnexpectedError, TokenUnauthorizedError)
 
 # Was __version__ = '3.1.0.RYAN' but pip doens't like that
-__version__ = '3.1.0.RYAN'
+__version__ = '3.1.1.1'
 
 
 RELATED_DOCS_TEXT = "See https://github.com/jkeyes/python-intercom \
