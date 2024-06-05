@@ -6,7 +6,7 @@ from .errors import (ArgumentError, AuthenticationError, # noqa
     MultipleMatchingUsersError, RateLimitExceeded, ResourceNotFound,
     ServerError, ServiceUnavailableError, UnexpectedError, TokenUnauthorizedError)
 
-# Was __version__ = '3.1.0.RYAN' but pip doens't like that
+# Version was '3.1.0.RYAN' but pip doens't like that
 __version__ = '3.1.1.1'
 
 
