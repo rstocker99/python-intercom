@@ -23,7 +23,7 @@ def custom_attribute_field(attribute):
 
 def typed_value(value):
     has_type = hasattr(value, 'keys') and 'type' in value
-    is_type_none = value.get('type') is None
+    is_type_none = has_type and value.get('type') is None
     return has_type and not is_type_none
 
 
